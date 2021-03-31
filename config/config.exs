@@ -8,15 +8,16 @@
 use Mix.Config
 
 config :octo_events,
-  ecto_repos: [OctoEvents.Repo]
+  ecto_repos: [OctoEvents.Repo],
+  generators: [binary_id: true]
 
 # Configures the endpoint
 config :octo_events, OctoEventsWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "tUUZq3tPzPZLPuEkdURS8Ngh9C8VZcS593RECQj6sC8bAazMfB1CLDQ2WPd1mDYf",
+  secret_key_base: "KGnSlc3QXM0+Qix0xkqptj9/hyLEwqi2ZWxqFvftdHMR+3TY3unDceQ4WhPi/n+J",
   render_errors: [view: OctoEventsWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: OctoEvents.PubSub,
-  live_view: [signing_salt: "nBmXpZ0v"]
+  live_view: [signing_salt: "J0c6Lp3Y"]
 
 # Configures Elixir's Logger
 config :logger, :console,
