@@ -26,3 +26,6 @@ octo_events-*.tar
 # we ignore priv/static. You may want to comment
 # this depending on your deployment strategy.
 /priv/static/
+
+# Don't version ngrok binaries
+/ngrok/ngrok*

@@ -1,19 +1,25 @@
 # OctoEvents
 
-To start your Phoenix server:
+## Starting up
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
+### Phoenix server
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+// TO-DO
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+### Ngrok
 
-## Learn more
+We are using Ngrok to expose the localhost environment, instead of deploying to a cloud service.
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+1. [Download](https://ngrok.com/download) and extract the binary to the [ngrok folder](./ngrok);
+2. [Sign up](https://dashboard.ngrok.com/signup) and login to Ngrok;
+3. Take note of your auth token available [here](https://dashboard.ngrok.com/get-started/your-authtoken);
+4. Connect to your account:
+```bash
+# Considering you extracted ngrok to ./ngrok folder, send this on your terminal
+$ ./ngrok/ngrok authtoken <your_auth_token>
+# You should get a message 'Authtoken saved to configuration file(...)'
+```
+5. Fire up the ngrok and point to the Phoenix server port:
+```bash
+$ ./ngrok/ngrok http 4000
+```
