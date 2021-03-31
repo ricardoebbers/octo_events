@@ -22,4 +22,8 @@ $ ./ngrok/ngrok authtoken <your_auth_token>
 5. Fire up the ngrok and point to the Phoenix server port:
 ```bash
 $ ./ngrok/ngrok http 4000
+# Your terminal shoud contain a text-based dashboard with a line like this:
+# Forwarding                    http://ed5cb167ae99.ngrok.io -> http://localhost:4000
 ```
+6. Click the address exposed by ngrok;
+7. You should see the NoRouteError page from Phoenix for GET /. This is working as expected.
