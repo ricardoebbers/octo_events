@@ -4,7 +4,17 @@
 
 ### Phoenix server
 
-// TO-DO
+1. Setup ecto:
+```bash
+# Create the storage for the repositories
+$ mix ecto.create
+# Run the pending migrations
+$ mix ecto.migrate
+```
+2. Start up server:
+```bash
+$ mix phx.server
+```
 
 ### Ngrok
 
