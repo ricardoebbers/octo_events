@@ -8,4 +8,8 @@ defmodule OctoEventsWeb.Router do
   scope "/api", OctoEventsWeb do
     pipe_through :api
   end
+
+  scope "/payload", OctoEventsWeb do
+    post "/", PayloadController, :inspect
+  end
 end
