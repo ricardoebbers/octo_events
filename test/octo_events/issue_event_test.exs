@@ -11,7 +11,7 @@ defmodule OctoEvents.IssueEventTest do
       params = build(:issue_event_params)
 
       response = IssueEvent.changeset(params)
-      assert %Changeset{changes: %{issue_id: 123_123}, valid?: true} = response
+      assert %Changeset{changes: %{issue_id: 444_500_041}, valid?: true} = response
     end
 
     test "should return an error if payload doesn't contains an issue" do
