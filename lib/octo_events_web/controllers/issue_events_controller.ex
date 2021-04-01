@@ -10,7 +10,7 @@ defmodule OctoEventsWeb.IssueEventsController do
 
   def list_events(conn, %{"issue_id" => id}) do
     with {id_int, _rest} <- Integer.parse(id),
-         issue_events = OctoEvents.list_issue_events(id_int) do
+         issue_events <- OctoEvents.list_issue_events(id_int) do
       render(conn, "list.json", issue_events: issue_events)
     else
       _ ->
@@ -21,12 +21,14 @@ defmodule OctoEventsWeb.IssueEventsController do
   end
 
   def create(conn, payload) do
-    with {:ok, %IssueEvent{}} <- OctoEvents.create_issue_event(payload) do
-      conn
-      |> put_status(:created)
-      |> text("")
-    else
-      _ -> handle_invalid_payload(conn, payload)
+    case OctoEvents.create_issue_event(payload) do
+      {:ok, %IssueEvent{}} ->
+        conn
+        |> put_status(:created)
+        |> text("")
+
+      _ ->
+        handle_invalid_payload(conn, payload)
     end
   end
 

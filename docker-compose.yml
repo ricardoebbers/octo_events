@@ -2,6 +2,7 @@ version: "3.9"
 services:
   api:
     build: .
+    container_name: octo_events_api
     depends_on:
       - db
     ports:

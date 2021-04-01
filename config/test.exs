@@ -6,10 +6,11 @@ use Mix.Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :octo_events, OctoEvents.Repo,
-  username: "postgres",
+  username: System.get_env("PGUSER") || "postgres",
   password: "postgres",
   database: "octo_events_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "localhost",
+  hostname: System.get_env("PGHOST") || "localhost",
+  show_sensitive_data_on_connection_error: true,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,

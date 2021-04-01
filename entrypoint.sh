@@ -10,7 +10,7 @@ done
 
 echo "Creating and migrating database..."
 mix do ecto.create, ecto.migrate
-echo "Database $PGDATABASE created."
+echo "Database created."
 
 echo "Starting server..."
 exec mix phx.server

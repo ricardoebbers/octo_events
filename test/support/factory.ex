@@ -19,7 +19,7 @@ defmodule OctoEvents.Factory do
     %{
       "action" => "created",
       "issue" => %{
-        "id" => 444_500_041,
+        "id" => 444_500_041
       }
     }
   end

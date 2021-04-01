@@ -64,9 +64,9 @@ We should be all set up, so now we can test the service.
 
 ## Running tests
 
-You can run all tests on the service by using mix:
+You can run all tests by using docker and mix, with the server running:
 ```bash
-$ mix test
+$ docker exec octo_events_api mix test --cover
 ```
 
 ## Validating that issue events are stored

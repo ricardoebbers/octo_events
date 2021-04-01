@@ -89,6 +89,8 @@ defmodule OctoEventsWeb.IssueEventsControllerTest do
         conn
         |> post(Routes.issue_events_path(conn, :create, payload))
         |> text_response(:created)
+
+      assert "" == response
     end
 
     test "should not store an event that isn't issue event", %{conn: conn} do
@@ -100,6 +102,8 @@ defmodule OctoEventsWeb.IssueEventsControllerTest do
         conn
         |> post(Routes.issue_events_path(conn, :create, payload))
         |> text_response(:bad_request)
+
+      assert "invalid payload" == response
     end
   end
 end
