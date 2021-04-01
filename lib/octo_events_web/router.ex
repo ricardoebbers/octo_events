@@ -9,7 +9,7 @@ defmodule OctoEventsWeb.Router do
     pipe_through :api
 
     get "/issues", IssueEventsController, :list_issues
-    get "/:issue_id/events", IssueEventsController, :list_events
+    get "/issues/:issue_id/events", IssueEventsController, :list_events
     post "/payload", IssueEventsController, :create
   end
 end

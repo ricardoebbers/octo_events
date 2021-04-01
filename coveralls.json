@@ -1,5 +1,12 @@
 {
   "skip_files": [
-    "test"
+    "test/",
+    "lib/octo_events_web",
+    "lib/octo_events/application",
+    "lib/octo_events/repo",
+    "lib/octo_events_web/endpoint",
+    "lib/octo_events_web/gettext",
+    "lib/octo_events_web/channels/user_socket",
+    "lib/octo_events_web/views/error_helpers"
   ]
 }
