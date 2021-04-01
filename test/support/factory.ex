@@ -7,17 +7,18 @@ defmodule OctoEvents.Factory do
       "issue" => %{
         "url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/1",
         "repository_url" => "https://api.github.com/repos/Codertocat/Hello-World",
-        "labels_url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/1/labels%{/name}",
+        "labels_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/issues/1/labels%{/name}",
         "comments_url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/1/comments",
         "events_url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/1/events",
         "html_url" => "https://github.com/Codertocat/Hello-World/issues/1",
-        "id" => 444500041,
+        "id" => 444_500_041,
         "node_id" => "MDU6SXNzdWU0NDQ1MDAwNDE=",
         "number" => 1,
         "title" => "Spelling error in the README file",
         "user" => %{
           "login" => "Codertocat",
-          "id" => 21031067,
+          "id" => 21_031_067,
           "node_id" => "MDQ6VXNlcjIxMDMxMDY3",
           "avatar_url" => "https://avatars1.githubusercontent.com/u/21031067?v=4",
           "gravatar_id" => "",
@@ -37,7 +38,7 @@ defmodule OctoEvents.Factory do
         },
         "labels" => [
           %{
-            "id" => 1362934389,
+            "id" => 1_362_934_389,
             "node_id" => "MDU6TGFiZWwxMzYyOTM0Mzg5",
             "url" => "https://api.github.com/repos/Codertocat/Hello-World/labels/bug",
             "name" => "bug",
@@ -49,7 +50,7 @@ defmodule OctoEvents.Factory do
         "locked" => false,
         "assignee" => %{
           "login" => "Codertocat",
-          "id" => 21031067,
+          "id" => 21_031_067,
           "node_id" => "MDQ6VXNlcjIxMDMxMDY3",
           "avatar_url" => "https://avatars1.githubusercontent.com/u/21031067?v=4",
           "gravatar_id" => "",
@@ -70,7 +71,7 @@ defmodule OctoEvents.Factory do
         "assignees" => [
           %{
             "login" => "Codertocat",
-            "id" => 21031067,
+            "id" => 21_031_067,
             "node_id" => "MDQ6VXNlcjIxMDMxMDY3",
             "avatar_url" => "https://avatars1.githubusercontent.com/u/21031067?v=4",
             "gravatar_id" => "",
@@ -92,15 +93,16 @@ defmodule OctoEvents.Factory do
         "milestone" => %{
           "url" => "https://api.github.com/repos/Codertocat/Hello-World/milestones/1",
           "html_url" => "https://github.com/Codertocat/Hello-World/milestone/1",
-          "labels_url" => "https://api.github.com/repos/Codertocat/Hello-World/milestones/1/labels",
-          "id" => 4317517,
+          "labels_url" =>
+            "https://api.github.com/repos/Codertocat/Hello-World/milestones/1/labels",
+          "id" => 4_317_517,
           "node_id" => "MDk6TWlsZXN0b25lNDMxNzUxNw==",
           "number" => 1,
           "title" => "v1.0",
           "description" => "Add new space flight simulator",
           "creator" => %{
             "login" => "Codertocat",
-            "id" => 21031067,
+            "id" => 21_031_067,
             "node_id" => "MDQ6VXNlcjIxMDMxMDY3",
             "avatar_url" => "https://avatars1.githubusercontent.com/u/21031067?v=4",
             "gravatar_id" => "",
@@ -137,11 +139,11 @@ defmodule OctoEvents.Factory do
         "url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/comments/492700400",
         "html_url" => "https://github.com/Codertocat/Hello-World/issues/1#issuecomment-492700400",
         "issue_url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/1",
-        "id" => 492700400,
+        "id" => 492_700_400,
         "node_id" => "MDEyOklzc3VlQ29tbWVudDQ5MjcwMDQwMA==",
         "user" => %{
           "login" => "Codertocat",
-          "id" => 21031067,
+          "id" => 21_031_067,
           "node_id" => "MDQ6VXNlcjIxMDMxMDY3",
           "avatar_url" => "https://avatars1.githubusercontent.com/u/21031067?v=4",
           "gravatar_id" => "",
@@ -165,14 +167,14 @@ defmodule OctoEvents.Factory do
         "body" => "You are totally right! I'll get this fixed right away."
       },
       "repository" => %{
-        "id" => 186853002,
+        "id" => 186_853_002,
         "node_id" => "MDEwOlJlcG9zaXRvcnkxODY4NTMwMDI=",
         "name" => "Hello-World",
         "full_name" => "Codertocat/Hello-World",
         "private" => false,
         "owner" => %{
           "login" => "Codertocat",
-          "id" => 21031067,
+          "id" => 21_031_067,
           "node_id" => "MDQ6VXNlcjIxMDMxMDY3",
           "avatar_url" => "https://avatars1.githubusercontent.com/u/21031067?v=4",
           "gravatar_id" => "",
@@ -196,13 +198,17 @@ defmodule OctoEvents.Factory do
         "url" => "https://api.github.com/repos/Codertocat/Hello-World",
         "forks_url" => "https://api.github.com/repos/Codertocat/Hello-World/forks",
         "keys_url" => "https://api.github.com/repos/Codertocat/Hello-World/keys%{/key_id}",
-        "collaborators_url" => "https://api.github.com/repos/Codertocat/Hello-World/collaborators%{/collaborator}",
+        "collaborators_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/collaborators%{/collaborator}",
         "teams_url" => "https://api.github.com/repos/Codertocat/Hello-World/teams",
         "hooks_url" => "https://api.github.com/repos/Codertocat/Hello-World/hooks",
-        "issue_events_url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/events%{/number}",
+        "issue_events_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/issues/events%{/number}",
         "events_url" => "https://api.github.com/repos/Codertocat/Hello-World/events",
-        "assignees_url" => "https://api.github.com/repos/Codertocat/Hello-World/assignees%{/user}",
-        "branches_url" => "https://api.github.com/repos/Codertocat/Hello-World/branches%{/branch}",
+        "assignees_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/assignees%{/user}",
+        "branches_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/branches%{/branch}",
         "tags_url" => "https://api.github.com/repos/Codertocat/Hello-World/tags",
         "blobs_url" => "https://api.github.com/repos/Codertocat/Hello-World/git/blobs%{/sha}",
         "git_tags_url" => "https://api.github.com/repos/Codertocat/Hello-World/git/tags%{/sha}",
@@ -215,18 +221,25 @@ defmodule OctoEvents.Factory do
         "subscribers_url" => "https://api.github.com/repos/Codertocat/Hello-World/subscribers",
         "subscription_url" => "https://api.github.com/repos/Codertocat/Hello-World/subscription",
         "commits_url" => "https://api.github.com/repos/Codertocat/Hello-World/commits%{/sha}",
-        "git_commits_url" => "https://api.github.com/repos/Codertocat/Hello-World/git/commits%{/sha}",
-        "comments_url" => "https://api.github.com/repos/Codertocat/Hello-World/comments%{/number}",
-        "issue_comment_url" => "https://api.github.com/repos/Codertocat/Hello-World/issues/comments%{/number}",
+        "git_commits_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/git/commits%{/sha}",
+        "comments_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/comments%{/number}",
+        "issue_comment_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/issues/comments%{/number}",
         "contents_url" => "https://api.github.com/repos/Codertocat/Hello-World/contents/%{+path}",
-        "compare_url" => "https://api.github.com/repos/Codertocat/Hello-World/compare/%{base}...%{head}",
+        "compare_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/compare/%{base}...%{head}",
         "merges_url" => "https://api.github.com/repos/Codertocat/Hello-World/merges",
-        "archive_url" => "https://api.github.com/repos/Codertocat/Hello-World/%{archive_format}%{/ref}",
+        "archive_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/%{archive_format}%{/ref}",
         "downloads_url" => "https://api.github.com/repos/Codertocat/Hello-World/downloads",
         "issues_url" => "https://api.github.com/repos/Codertocat/Hello-World/issues%{/number}",
         "pulls_url" => "https://api.github.com/repos/Codertocat/Hello-World/pulls%{/number}",
-        "milestones_url" => "https://api.github.com/repos/Codertocat/Hello-World/milestones%{/number}",
-        "notifications_url" => "https://api.github.com/repos/Codertocat/Hello-World/notifications%{?since,all,participating}",
+        "milestones_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/milestones%{/number}",
+        "notifications_url" =>
+          "https://api.github.com/repos/Codertocat/Hello-World/notifications%{?since,all,participating}",
         "labels_url" => "https://api.github.com/repos/Codertocat/Hello-World/labels%{/name}",
         "releases_url" => "https://api.github.com/repos/Codertocat/Hello-World/releases%{/id}",
         "deployments_url" => "https://api.github.com/repos/Codertocat/Hello-World/deployments",
@@ -260,7 +273,7 @@ defmodule OctoEvents.Factory do
       },
       "sender" => %{
         "login" => "Codertocat",
-        "id" => 21031067,
+        "id" => 21_031_067,
         "node_id" => "MDQ6VXNlcjIxMDMxMDY3",
         "avatar_url" => "https://avatars1.githubusercontent.com/u/21031067?v=4",
         "gravatar_id" => "",

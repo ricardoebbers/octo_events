@@ -1,5 +1,4 @@
 defmodule OctoEvents.IssueEvents.Create do
-
   alias OctoEvents.{Repo, IssueEvent}
 
   def call(params) do
@@ -7,5 +6,4 @@ defmodule OctoEvents.IssueEvents.Create do
     |> IssueEvent.changeset()
     |> Repo.insert()
   end
-
 end
