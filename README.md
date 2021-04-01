@@ -1,5 +1,8 @@
 # OctoEvents
 
+Octo Events is an application that listens to Github Events via webhooks and exposes an api for later use.  
+![Octo events](./img/octo_events.png)
+
 ## Prerequisites
 
 ### Elixir
@@ -14,6 +17,7 @@ $ elixir --version
 
 1. Follow the steps to install Phoenix available [here](https://hexdocs.pm/phoenix/installation.html);
 2. You won't need node.js for this project, but you will need PostgreSQL.
+
 ### Postgres
 
 1. Follow the steps to install PostgreSQL available [here](https://wiki.postgresql.org/wiki/Detailed_installation_guides);
@@ -44,6 +48,7 @@ We need a test repository to validate that events triggers the webhook.
 ## Starting up
 
 ### Clone
+
 1. Clone this project:
 ```bash
 $ git clone https://github.com/ricardoebbers/octo_events.git
@@ -102,7 +107,6 @@ $ ./ngrok/ngrok http 4000
 8. Click on "Add Webhook" button;
 9. Github sends a `ping` event when webhooks are created. On the Recent Deliveries section you should see an uuid with a green checkmark like this: ![Ping ok](./img/ping_ok.png)
 
-
 ## Testing
 
 We should be all set up, so now we can test the service.
@@ -141,4 +145,8 @@ POST /payload                  400 Bad Request
 
 ### Listing stored events
 
-// TODO 
+The event payloads are relatively big. Considering that, I recommend using a REST client like Insomnia or Postman to make it easier to read. 
+
+1. Call GET `http://localhost:4000/issues` to see a list of issue ids that have events registered for them;
+2. Pick one of the ids from the list and call GET `http://localhost:4000/issues/<issue_id>/events` to see all events for that issue.
+
