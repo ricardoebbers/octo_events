@@ -5,15 +5,11 @@ defmodule OctoEventsWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/issues", OctoEventsWeb do
+  scope "/", OctoEventsWeb do
     pipe_through :api
-    get "/", IssueEventsController, :list_issues
+
+    get "/issues", IssueEventsController, :list_issues
     get "/:issue_id/events", IssueEventsController, :list_events
-  end
-
-  scope "/payload", OctoEventsWeb do
-    pipe_through :api
-
-    post "/", PayloadsController, :create
+    post "/payload", IssueEventsController, :create
   end
 end
