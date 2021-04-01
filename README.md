@@ -3,51 +3,28 @@
 Octo Events is an application that listens to Github Events via webhooks and exposes an api for later use.  
 ![Octo events](./img/octo_events.png)
 
-## Prerequisites
+# Prerequisites
 
-### Elixir
+## Docker
 
-1. Follow the steps to install elixir on your OS available [here](https://elixir-lang.org/install.html);
-2. Check that elixir is installed correctly:
+All you need to run Octo Events is Docker installed with docker-compose.
+
+1. To install Docker follow the instructions [here](https://docs.docker.com/get-docker/);
+2. Validate that you have docker compose installed and running:
 ```bash
-$ elixir --version
+$ docker-compose --version
+# docker-compose version 1.28.5, build c4eb3a1f
 ```
 
-### Phoenix
+## Test repository
 
-1. Follow the steps to install Phoenix available [here](https://hexdocs.pm/phoenix/installation.html);
-2. You won't need node.js for this project, but you will need PostgreSQL.
-
-### Postgres
-
-1. Follow the steps to install PostgreSQL available [here](https://wiki.postgresql.org/wiki/Detailed_installation_guides);
-2. Make sure your 'postgres' user has the default 'postgres' password and can login with it;
-
-### Ngrok
-
-We are using Ngrok to expose the localhost environment, instead of deploying to a cloud service.
-
-1. [Download](https://ngrok.com/download) and extract the binary to the [ngrok folder](./ngrok);
-2. [Sign up](https://dashboard.ngrok.com/signup) and login to Ngrok;
-3. Take note of your auth token available [here](https://dashboard.ngrok.com/get-started/your-authtoken);
-4. Connect to your account:
-```bash
-# Considering you extracted ngrok to ./ngrok folder, send this on your terminal
-$ ./ngrok/ngrok authtoken <your_auth_token>
-# You should get a message 'Authtoken saved to configuration file(...)'
-```
-
-### Test repository
-
-We need a test repository to validate that events triggers the webhook.
+We need a github test repository to validate that events triggers the webhook.
 
 1. Login to your github account;
 2. [Create](https://github.com/new) a new repository with a README;
 3. Keep track of the test repository name, it will be needed later.
 
-## Starting up
-
-### Clone
+# Starting up
 
 1. Clone this project:
 ```bash
@@ -57,48 +34,22 @@ $ git clone https://github.com/ricardoebbers/octo_events.git
 ```bash
 $ cd octo_events
 ```
-
-### Phoenix server
-
-1. Compile project:
+3. Create the api, database and ngrok with docker-compose:
 ```bash
-$ mix compile
+$ docker-compose up -d
+# Creating network "octo_events_default" with the default driver
+# Creating octo_events_db_1 ... done
+# Creating octo_events_api_1 ... done
+# Creating octo_events_ngrok_1 ... done
 ```
-2. Setup ecto:
-```bash
-# Create the storage for the repositories
-$ mix ecto.create
-# You should see this line:
-# The database for OctoEvents.Repo has been created
+4. Go to the ngrok web interface at http://localhost:4551
+5. Take note of the generated tunnel url:
+![Ngrok tunnel Url](img/ngrok_tunnel_url.png)
 
-# Run the pending migrations
-$ mix ecto.migrate
-# You should see "== Migrated (...) in 0.0s" for each migration in the project
-```
-3. Start up server:
-```bash
-$ mix phx.server
-# Your terminal should contain these lines:
-# [info] Running OctoEventsWeb.Endpoint with cowboy 2.8.0 at 0.0.0.0:4000 (http)
-# [info] Access OctoEventsWeb.Endpoint at http://localhost:4000
-```
-
-### Ngrok
-
-1. On another terminal, fire up the ngrok and point to the Phoenix server port (defaults to 4000):
-```bash
-$ ./ngrok/ngrok http 4000
-# Your terminal shoud contain a text-based dashboard with a line like this:
-# Forwarding                    http://ed5cb167ae99.ngrok.io -> http://localhost:4000
-                                ^ Take note of this address, you will need it to configure the webhook
-```
-2. Click the address exposed by ngrok;
-3. You should see the NoRouteError page from Phoenix for GET /. This is working as expected.
-
-### Configure Webhook
+## Configure Webhook
 
 1. Create a new webhook for your test repository at `https://github.com/<your_github_username>/<your_test_repository>/settings/hooks/new` (you might need to confirm your github access, as you will be entering sudo mode)
-2. On "payload URL" insert the forwarding address from ngrok terminal, with the `/payload` suffix like this: `http://<your_ngrok_url_here>.ngrok.io/payload`;
+2. On "payload URL" insert the generated tunnel url from ngrok, with the `/payload` suffix like this: `http://<ngrok_tunnel_url>/payload`;
 3. On "Content type" select "application/json";
 4. You can keep the "secret key" blank for now;
 5. Check the "let me select individual events" radio button;
@@ -107,46 +58,41 @@ $ ./ngrok/ngrok http 4000
 8. Click on "Add Webhook" button;
 9. Github sends a `ping` event when webhooks are created. On the Recent Deliveries section you should see an uuid with a green checkmark like this: ![Ping ok](./img/ping_ok.png)
 
-## Testing
+# Testing
 
 We should be all set up, so now we can test the service.
 
-### Running tests
+## Running tests
 
 You can run all tests on the service by using mix:
 ```bash
 $ mix test
 ```
 
-### Validating that issue events are stored
+## Validating that issue events are stored
 
 1. Go to the test repository and create a new issue `https://github.com/<your_github_username>/<your_test_repository>/issues/new`;
-2. Check the **ngrok** terminal, you should see something like:
-```bash
-HTTP Requests
--------------
+2. Check http://localhost:4551. You should see something like this: 
+![Ngrok success](./img/ngrok_success.png)
+The `POST /payload 200 OK` is from the `ping` event, and the `POST /payload 201 Created` is from the `issue opened` event
 
-POST /payload                  201 Created # <- this signifies that we stored the event
-POST /payload                  200 OK # <- this is from the ping event sent before
+## Validating that other event types are discarded
 
-```
-
-### Validating that other event types are discarded
-
-1. Edit your webhook to send unhandled events like `Pull requests`;
+1. Edit your webhook to send unhandled events like `pull requests`;
 2. Create a pull request. You can edit the README file on the browser for simplicity.
-3. Check the Ngrok terminal again, you should see:
-```bash
-HTTP Requests
--------------
+3. Check http://localhost:4551 again, you should see:
+![Ngrok fail](./img/ngrok_fail.png)
 
-POST /payload                  400 Bad Request
-```
+## Listing stored events
 
-### Listing stored events
-
-The event payloads are relatively big. Considering that, I recommend using a REST client like Insomnia or Postman to make it easier to read. 
+The event payloads are relatively big. Considering that, I recommend using a REST client like Insomnia or Postman to make it easier to read, but you can use your browser too. 
 
 1. Call GET `http://localhost:4000/issues` to see a list of issue ids that have events registered for them;
 2. Pick one of the ids from the list and call GET `http://localhost:4000/issues/<issue_id>/events` to see all events for that issue.
 
+# Wrapping up
+
+Don't forget to stop and remove the containers:
+```bash
+$ docker-compose down --volumes --rmi local
+```
