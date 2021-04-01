@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - 4000:4000
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+  db:
+    image: postgres:13-alpine
+    restart: always
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+  ngrok:
+    image: shkoliar/ngrok:latest
+    ports:
+      - 4551:4551
+    links:
+      - api
+    environment:
+      - DOMAIN=api
+      - PORT=4000
+volumes:
+  pgdata:

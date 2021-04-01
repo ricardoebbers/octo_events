@@ -29,3 +29,6 @@ octo_events-*.tar
 
 # Don't version ngrok binaries
 /ngrok/ngrok*
+
+# Don't version data folder
+/data
