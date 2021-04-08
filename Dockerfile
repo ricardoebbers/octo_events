@@ -11,6 +11,7 @@ RUN mix do deps.get, deps.compile
 # compile
 ADD . .
 RUN mix compile
+RUN chmod +x entrypoint.sh
 
 FROM elixir:latest as runtime
 
@@ -23,4 +24,6 @@ RUN apt-get update && \
 
 COPY --from=builder /opt/app .
 
-CMD ["/app/entrypoint.sh"]
+USER nobody
+
+CMD ["/opt/app/entrypoint.sh"]
