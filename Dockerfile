@@ -24,6 +24,4 @@ RUN apt-get update && \
 
 COPY --from=builder /opt/app .
 
-USER nobody
-
 CMD ["/opt/app/entrypoint.sh"]
